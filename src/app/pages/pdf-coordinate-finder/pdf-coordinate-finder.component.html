@@ -1,0 +1,11 @@
+<pdf-viewer *ngIf="(pdfData$ | async) as pdf else loading" 
+    [src]="{ data: pdf }"
+    [render-text]="true"
+    [original-size]="false"
+    style="width: 850px; height: 1100px"
+    (click)="addOnClick($event)"
+></pdf-viewer>
+
+<ng-template #loading>
+    <p class="my-4">Loading&hellip;</p>
+</ng-template>
