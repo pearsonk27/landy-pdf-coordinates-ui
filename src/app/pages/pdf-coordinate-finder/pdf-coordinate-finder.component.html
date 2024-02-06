@@ -1,4 +1,16 @@
-<pdf-viewer *ngIf="(pdfData$ | async) as pdf else loading" 
+<input type="file" class="file-input"
+       (change)="onFileSelected($event)" #fileUpload>
+
+<div class="file-upload">
+
+    <button mat-mini-fab color="primary" class="upload-btn"
+      (click)="fileUpload.click()">
+        <mat-icon>attach_file</mat-icon>
+    </button>
+    
+</div>
+
+<pdf-viewer *ngIf="(pdf$ | async | blobToInt8array) as pdf else noData" 
     [src]="{ data: pdf }"
     [render-text]="true"
     [original-size]="false"
@@ -6,6 +18,6 @@
     (click)="addOnClick($event)"
 ></pdf-viewer>
 
-<ng-template #loading>
-    <p class="my-4">Loading&hellip;</p>
+<ng-template #noData>
+    <p class="my-4">No Data&hellip;</p>
 </ng-template>
