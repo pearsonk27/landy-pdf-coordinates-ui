@@ -1,4 +1,4 @@
-<input type="file" class="file-input"
+<input type="file" class="file-input" style="visibility: hidden;"
        (change)="onFileSelected($event)" #fileUpload>
 
 <div class="file-upload">
@@ -10,7 +10,7 @@
     
 </div>
 
-<pdf-viewer *ngIf="(pdf$ | async | blobToInt8array) as pdf else noData" 
+<pdf-viewer *ngIf="(pdfService.currentPdf() | blobToInt8array) as pdf else noData" 
     [src]="{ data: pdf }"
     [render-text]="true"
     [original-size]="false"

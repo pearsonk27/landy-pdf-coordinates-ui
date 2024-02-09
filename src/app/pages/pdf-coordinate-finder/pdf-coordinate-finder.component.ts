@@ -16,11 +16,8 @@ import { BlobToInt8arrayPipe } from '../../pipes/blob-to-int8array.pipe';
 })
 export class PdfCoordinateFinderComponent {
 
-  public pdf$: Observable<Pdf | undefined> = of(undefined);
-  public pdfData$: Observable<Uint8Array | undefined> = of(undefined);
-
   constructor(
-    private pdfService: PdfService
+    public pdfService: PdfService
   ) { }
 
   public ngOnInit(): void { }
@@ -34,7 +31,7 @@ export class PdfCoordinateFinderComponent {
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
     if (file) {
-        this.pdf$ = this.pdfService.upload(file)
+        this.pdfService.upload(file)
     }
   }
 }

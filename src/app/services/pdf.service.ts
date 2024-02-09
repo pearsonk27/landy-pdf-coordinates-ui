@@ -1,6 +1,7 @@
 import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, map, tap } from 'rxjs';
+import { Injectable, signal } from '@angular/core';
+import { map, tap } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Pdf } from '../interfaces/pdf';
 import { environment } from '../../environments/environment';
 
@@ -11,18 +12,34 @@ export class PdfService {
 
   private baseUrl = environment.serverApiRoot;
 
+  public currentPdf = signal<Pdf>({ name: "", coordinates: [], id: 0, data: ""});
+
+  public pdfs = signal<Pdf[]>([]);
+
   constructor(
     private http: HttpClient
-  ) { }
+  ) { 
+    this.http.get<Pdf[]>(`${this.baseUrl}/pdfs`)
+      .pipe(takeUntilDestroyed())
+      .subscribe(
+        pdfs => this.pdfs.set(pdfs)
+      )
+  }
 
-  upload(file: File): Observable<Pdf> {
+  upload(file: File): void {
     const formData: FormData = new FormData();
 
     formData.append('file', file);
 
-    return this.http.post<Pdf>(`${this.baseUrl}/upload`, formData).pipe(
-      tap( res => console.log('HTTP response:', res)),
-      tap(console.log)
+    this.http.post<Pdf>(`${this.baseUrl}/upload`, formData).subscribe(
+      currentPdf => {
+        this.currentPdf.set(currentPdf)
+        this.pdfs.update(pdfs => {
+          let ret: Pdf[] = pdfs.slice(0, 4)
+          ret.unshift(currentPdf)
+          return ret;
+        })
+      }
     );
   }
 
