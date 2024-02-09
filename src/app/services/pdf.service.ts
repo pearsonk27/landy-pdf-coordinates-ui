@@ -46,22 +46,4 @@ export class PdfService {
   public getAllPdfs$() {
     return this.http.get<Pdf[]>(`${this.baseUrl}/pdfs`);
   }
-
-  public getPdfByName$(text: string) {
-    return this.getAllPdfs$().pipe(
-      map(pdfs => pdfs.filter(pdf => pdf.name.toLowerCase().includes(text.toLowerCase())).at(0))
-    );
-  }
-
-  public getPdfById$(id: number) {
-    return this.http.get<Pdf>(`${this.baseUrl}/pdfs/${id}`);
-  }
-
-  public getPdfData$() {
-    return this.http.get('/assets/pdfs/AddCyl3001Testing.pdf', { responseType: 'blob' })
-    .pipe(
-      tap( res => console.log('HTTP response:', res)),
-      tap(console.log)
-  )
-  }
 }
