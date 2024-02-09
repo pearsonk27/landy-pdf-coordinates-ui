@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { PdfCoordinateFinderComponent } from './pages/pdf-coordinate-finder/pdf-coordinate-finder.component';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -10,5 +11,7 @@ import { PdfCoordinateFinderComponent } from './pages/pdf-coordinate-finder/pdf-
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+  public appFooter = environment.appFooter;
+  
   title = 'landy-pdf-coordinates-ui';
 }

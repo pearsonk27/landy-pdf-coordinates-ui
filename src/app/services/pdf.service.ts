@@ -2,13 +2,14 @@ import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map, tap } from 'rxjs';
 import { Pdf } from '../interfaces/pdf';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PdfService {
 
-  private baseUrl = 'https://obscure-space-invention-rpx54xpgxq73xrrw-8080.app.github.dev';
+  private baseUrl = environment.serverApiRoot;
 
   constructor(
     private http: HttpClient
