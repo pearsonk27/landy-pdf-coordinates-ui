@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialog } from '@angular/material/dialog';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
-import { Observable, of } from 'rxjs';
-import { Pdf } from '../../interfaces/pdf';
 import { PdfService } from '../../services/pdf.service';
 import { BlobToInt8arrayPipe } from '../../pipes/blob-to-int8array.pipe';
+import { AddCoordinateDialogComponent } from '../../components/add-coordinate-dialog/add-coordinate-dialog.component';
 
 @Component({
     selector: 'app-pdf-coordinate-finder',
@@ -17,14 +17,17 @@ import { BlobToInt8arrayPipe } from '../../pipes/blob-to-int8array.pipe';
 export class PdfCoordinateFinderComponent {
 
   constructor(
-    public pdfService: PdfService
+    public pdfService: PdfService,
+    public dialog: MatDialog
   ) { }
 
   public ngOnInit(): void { }
 
   addOnClick($event: MouseEvent) {
     if ($event) {
-      console.log("x: %d, y: %d", $event.offsetX, $event.offsetY)
+      this.dialog.open(AddCoordinateDialogComponent, {
+        data: {x: $event.offsetX, y: $event.offsetY, pdfId: this.pdfService.currentPdf().id},
+      });
     }
   }
 

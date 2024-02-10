@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>Coordinate for {{pdfService.currentPdf().name}} at ({{coordinate.x}}, {{coordinate.y}})</h2>
+<mat-dialog-content>
+    <mat-checkbox class="example-margin"
+                  [checked]="isTrainingCoordinate"
+                  (change)="trainingCoordinateToggled($event.checked)">Is it a training coordinate?</mat-checkbox>
+    <div *ngIf="isTrainingCoordinate === false">
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput [(ngModel)]="coordinate.name">
+        </mat-form-field>
+    </div>
+    <div *ngIf="isTrainingCoordinate === true">
+        <mat-form-field>
+            <mat-label>Training Coordinate</mat-label>
+            <mat-select>
+              @for (trainingCoordinate of coordinateService.trainingCoordinates; track trainingCoordinate) {
+                <mat-option [value]="trainingCoordinate"
+                            (click)="trainingCoordinateSet(trainingCoordinate)">{{trainingCoordinate.name}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button (click)="onOkClick()">Ok</button>
+</mat-dialog-actions>

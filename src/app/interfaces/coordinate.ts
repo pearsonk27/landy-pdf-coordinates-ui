@@ -1,9 +1,9 @@
 export interface Coordinate {
-    id: number;
+    id?: number;
     name: String;
-    pdfId: number;
-    x: number;
-    y: number;
-    convertedX: number;
-    convertedY: number;
+    pdfId?: number;
+    x?: number;
+    y?: number;
+    convertedX?: number;
+    convertedY?: number;
 }
