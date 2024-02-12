@@ -42,4 +42,17 @@ export class CoordinateService {
       })
     )
   }
+
+  delete(coordinateId: number) {
+    this.http.delete(`${this.baseUrl}/coordinates/${coordinateId}`).subscribe({
+      next: () => {
+        this.currentCoordinates.update(
+          coordinates => coordinates.filter(coordinate => coordinate.id !== coordinateId)
+        )
+      },
+      error: () => {
+        throw new Error(`Delete of Id ${coordinateId} failed`)
+      }
+    })
+  }
 }

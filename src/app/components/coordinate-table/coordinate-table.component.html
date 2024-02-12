@@ -1,0 +1,24 @@
+<table *ngIf="coordinateService.currentCoordinates().length" class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col" *ngFor="let column of displayedColumns">
+            {{column}}
+        </th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let coordinate of coordinateService.currentCoordinates()">
+        <td *ngFor="let column of displayedColumns">
+            {{getPropValue(coordinate, column)}}
+        </td>
+        
+        <td>
+          <button type="button" class="btn btn-outline-secondary" (click)="onDelete(coordinate.id)">
+            <i class="bi bi-trash"></i>
+            <span class="visually-hidden">Button</span>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
