@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'landy-pdf-coordinates-ui' title`, () => {
+  it(`should have the 'pdf-coordinates-ui' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('landy-pdf-coordinates-ui');
+    expect(app.title).toEqual('pdf-coordinates-ui');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, landy-pdf-coordinates-ui');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, pdf-coordinates-ui');
   });
 });

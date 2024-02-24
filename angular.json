@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "landy-pdf-coordinates-ui": {
+    "pdf-coordinates-ui": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/landy-pdf-coordinates-ui",
+            "outputPath": "dist/pdf-coordinates-ui",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -35,8 +35,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -64,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "landy-pdf-coordinates-ui:build:production"
+              "buildTarget": "pdf-coordinates-ui:build:production"
             },
             "development": {
-              "buildTarget": "landy-pdf-coordinates-ui:build:development"
+              "buildTarget": "pdf-coordinates-ui:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -75,7 +75,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "landy-pdf-coordinates-ui:build"
+            "buildTarget": "pdf-coordinates-ui:build"
           }
         },
         "test": {

@@ -13,5 +13,5 @@ import { environment } from '../environments/environment';
 export class AppComponent {
   public appFooter = environment.appFooter;
   
-  title = 'landy-pdf-coordinates-ui';
+  title = 'pdf-coordinates-ui';
 }
