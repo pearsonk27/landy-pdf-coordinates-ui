@@ -1,4 +1,4 @@
 export const environment = {
     appFooter: '© PDF Coordinate Finder',
-    serverApiRoot: 'https://localhost:8080'
+    serverApiRoot: 'http://server:8080'
 };
