@@ -43,6 +43,14 @@ export class PdfService {
     );
   }
 
+  regressCoordinates(): void {
+    this.http.get<Pdf>(`${this.baseUrl}/pdfs/extrapolate/coordinates/${this.currentPdf().id}`).subscribe(
+      regressedCoordinatePdf => {
+        this.currentPdf.set(regressedCoordinatePdf)
+      }
+    );
+  }
+
   public getAllPdfs$() {
     return this.http.get<Pdf[]>(`${this.baseUrl}/pdfs`);
   }

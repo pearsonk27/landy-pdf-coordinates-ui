@@ -22,7 +22,7 @@ export class PdfCoordinateFinderComponent {
   constructor(
     public pdfService: PdfService,
     public dialog: MatDialog
-    ) { }
+  ) { }
 
   public ngOnInit(): void { }
 
@@ -39,5 +39,9 @@ export class PdfCoordinateFinderComponent {
     if (file) {
         this.pdfService.upload(file)
     }
+  }
+
+  regressCoordinates() {
+    this.pdfService.regressCoordinates();
   }
 }
